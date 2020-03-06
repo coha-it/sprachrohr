@@ -13,15 +13,15 @@ $config = [
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>{{ config('app.name') }}</title>
-
   
-  <link rel="stylesheet" href="{{ mix('dist/frontend/css/semantic.min.css') }}">
-  <link rel="stylesheet" href="{{ mix('dist/frontend/css/frontend.css') }}">
   @if(App::environment('production'))
-    {{-- Produciton --}}
+    {{-- Production --}}
+    <link rel="stylesheet" href="{{ asset('dist/frontend/semantic/semantic.min.css') }}">
   @else
     {{-- Coding --}}
+    <link rel="stylesheet" href="{{ asset('dist/frontend/semantic/semantic.css') }}">
   @endif
+  <link rel="stylesheet" href="{{ mix('dist/frontend/css/frontend.css') }}">
 
 </head>
 <body>
@@ -33,12 +33,14 @@ $config = [
   </script>
 
   {{-- Load the application scripts --}}
-  <script src="{{ mix('dist/frontend/js/frontend.js') }}"></script>
   @if(App::environment('production'))
     {{-- Production --}}
+    {{-- <script src="{{ asset('dist/frontend/semantic/semantic.min.js') }}"></script> --}}
   @else
     {{-- Coding --}}
+    {{-- <script src="{{ asset('dist/frontend/semantic/semantic.js') }}"></script> --}}
   @endif
+  <script src="{{ mix('dist/frontend/js/frontend.js') }}"></script>
 
 </body>
 </html>
