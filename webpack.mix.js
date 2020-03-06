@@ -5,8 +5,21 @@ require('laravel-mix-versionhash')
 // const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer')
 
 mix
-  .js('resources/js/frontend.js', 'public/dist/js')
-  .sass('resources/sass/app.scss', 'public/dist/css')
+  // .js('resources/js/frontend.js', 'public/dist/js')
+  // .sass('resources/sass/frontend.scss', 'public/dist/css')
+  .js([
+    'node_modules/jquery/dist/jquery.min.js',
+    'node_modules/semantic-ui-sass/semantic-ui.js',
+    'node_modules/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js',
+    'resources/js/frontend.js'
+  ], 'public/dist/js/app.js')
+  .autoload({
+    jquery: ['$', 'window.jQuery', 'jQuery']
+  })
+  .sass('resources/sass/frontend.scss', 'public/dist/css/')
+  .copy('node_modules/semantic-ui-css/semantic.min.css', 'public/dist/css/')
+  .copy('node_modules/semantic-ui-css/themes', 'public/dist/css/themes')
+  .copy('node_modules/semantic-ui-css/themes', 'public/dist/css/themes')
 
   .disableNotifications()
 

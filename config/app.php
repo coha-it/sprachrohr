@@ -80,9 +80,10 @@ return [
     |
     */
 
-    'locale' => 'en',
+    'locale' => 'de',
 
     'locales' => [
+        'de' => 'DE',
         'en' => 'EN',
         'zh-CN' => '中文',
         'es' => 'ES',
@@ -99,7 +100,7 @@ return [
     |
     */
 
-    'fallback_locale' => 'en',
+    'fallback_locale' => 'de',
 
     /*
     |--------------------------------------------------------------------------
