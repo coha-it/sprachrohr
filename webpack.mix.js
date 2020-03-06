@@ -12,22 +12,36 @@ mix
     'node_modules/semantic-ui-sass/semantic-ui.js',
     'node_modules/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js',
     'resources/js/frontend.js'
-  ], 'public/dist/js/frontend.js')
+  ], 'public/dist/frontend/js/frontend.js')
   .autoload({
     jquery: ['$', 'window.jQuery', 'jQuery']
   })
 
-  .sass('resources/sass/frontend.scss', 'public/dist/css/')
-  .copy('node_modules/semantic-ui-css/semantic.min.css', 'public/dist/css/')
-  .copy('node_modules/semantic-ui-css/themes', 'public/dist/css/themes')
+  .sass('resources/sass/frontend.scss', 'public/dist/frontend/css/')
+  .copy('node_modules/semantic-ui-css/semantic.min.css', 'public/dist/frontend/css/')
+  .copy('node_modules/semantic-ui-css/themes', 'public/dist/frontend/css/themes')
 
   .disableNotifications()
 
+// LIVE
 if (mix.inProduction()) {
   mix
     // .extract() // Disabled until resolved: https://github.com/JeffreyWay/laravel-mix/issues/1889
     // .version() // Use `laravel-mix-versionhash` for the generating correct Laravel Mix manifest file.
     .versionHash()
+    // .styles(
+    //   [
+    //     'public/dist/frontend/css/semantic.min.css',
+    //     'public/dist/frontend/css/frontend.css'
+    //   ],
+    //   'public/dist/frontend/css/all.min.css'
+    // )
+    // .combine(
+    //   [
+    //     'public/dist/frontend/js/frontend.js',
+    //   ],
+    //   'public/dist/frontend/js/all.min.js'
+    // )
 } else {
   mix.sourceMaps()
 }
@@ -43,7 +57,7 @@ mix.webpackConfig({
     }
   },
   output: {
-    chunkFilename: 'dist/js/[chunkhash].js',
+    chunkFilename: 'dist/frontend/js/[chunkhash].js',
     path: mix.config.hmr ? '/' : path.resolve(__dirname, './public')
   }
 })
@@ -58,7 +72,7 @@ function publishAseets () {
   const publicDir = path.resolve(__dirname, './public')
 
   if (mix.inProduction()) {
-    fs.removeSync(path.join(publicDir, 'dist'))
+    // fs.removeSync(path.join(publicDir, 'dist'))
   }
 
   // fs.copySync(path.join(publicDir, 'dist'), path.join(publicDir, 'dist'))

@@ -14,7 +14,15 @@ $config = [
 
   <title>{{ config('app.name') }}</title>
 
-  <link rel="stylesheet" href="{{ mix('dist/css/frontend.css') }}">
+  
+  <link rel="stylesheet" href="{{ mix('dist/frontend/css/semantic.min.css') }}">
+  <link rel="stylesheet" href="{{ mix('dist/frontend/css/frontend.css') }}">
+  @if(App::environment('production'))
+    {{-- Produciton --}}
+  @else
+    {{-- Coding --}}
+  @endif
+
 </head>
 <body>
   <div id="app"></div>
@@ -25,6 +33,12 @@ $config = [
   </script>
 
   {{-- Load the application scripts --}}
-  <script src="{{ mix('dist/js/frontend.js') }}"></script>
+  <script src="{{ mix('dist/frontend/js/frontend.js') }}"></script>
+  @if(App::environment('production'))
+    {{-- Production --}}
+  @else
+    {{-- Coding --}}
+  @endif
+
 </body>
 </html>

@@ -1,5 +1,7 @@
-//
 
-body {
-  color: blue;
+#app,
+.main-layout {
+    min-height: 100%;
+    display: block;
+    height: inherit;
 }

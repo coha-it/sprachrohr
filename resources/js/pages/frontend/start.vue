@@ -1,5 +1,11 @@
 <template>
-  <div>jo</div>
+  <div class="ui basic segment">
+    <h3 class="ui header">Application Content</h3>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+  </div>
 </template>
 
 <script>
