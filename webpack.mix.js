@@ -12,13 +12,13 @@ mix
     'node_modules/semantic-ui-sass/semantic-ui.js',
     'node_modules/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js',
     'resources/js/frontend.js'
-  ], 'public/dist/js/app.js')
+  ], 'public/dist/js/frontend.js')
   .autoload({
     jquery: ['$', 'window.jQuery', 'jQuery']
   })
+
   .sass('resources/sass/frontend.scss', 'public/dist/css/')
   .copy('node_modules/semantic-ui-css/semantic.min.css', 'public/dist/css/')
-  .copy('node_modules/semantic-ui-css/themes', 'public/dist/css/themes')
   .copy('node_modules/semantic-ui-css/themes', 'public/dist/css/themes')
 
   .disableNotifications()
@@ -44,7 +44,7 @@ mix.webpackConfig({
   },
   output: {
     chunkFilename: 'dist/js/[chunkhash].js',
-    path: mix.config.hmr ? '/' : path.resolve(__dirname, './public/build')
+    path: mix.config.hmr ? '/' : path.resolve(__dirname, './public')
   }
 })
 
@@ -61,6 +61,6 @@ function publishAseets () {
     fs.removeSync(path.join(publicDir, 'dist'))
   }
 
-  fs.copySync(path.join(publicDir, 'build', 'dist'), path.join(publicDir, 'dist'))
-  fs.removeSync(path.join(publicDir, 'build'))
+  // fs.copySync(path.join(publicDir, 'dist'), path.join(publicDir, 'dist'))
+  // fs.removeSync(path.join(publicDir))
 }
