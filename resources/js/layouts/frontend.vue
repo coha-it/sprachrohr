@@ -1,11 +1,9 @@
 <template>
-  <div class="main-layout">
-    <div class="ui bottom attached segment pushable">
-      <div class="pusher">
-        <child />
-      </div>
-      <navbar />
+  <div class="main-layout ui pushable">
+    <div class="pusher">
+      <child />
     </div>
+    <navbar />
   </div>
 </template>
 
