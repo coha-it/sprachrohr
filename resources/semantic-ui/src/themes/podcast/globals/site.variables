@@ -1,0 +1,39 @@
+/*******************************
+         Site Settings
+*******************************/
+
+/*-------------------
+       Fonts
+--------------------*/
+
+@headerFont        : 'Montserrat', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@pageFont          : 'Poppins', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+@googleFontName    : 'Montserrat';
+
+/*-------------------
+      Base Sizes
+--------------------*/
+
+@emSize            : 10px;
+@fontSize          : 16px;
+
+/*--------------
+      Page
+---------------*/
+
+@pageBackground      : #F9F9F9;
+@lineHeight          : 1.33;
+@textColor           : #212121;
+
+/*-------------------
+        Paths
+--------------------*/
+
+@imagePath : '../../themes/podcast/assets/images';
+@fontPath  : '../../themes/podcast/assets/fonts';
+
+/*--------------
+   Paragraphs
+---------------*/
+
+@paragraphLineHeight: 1.45em;
