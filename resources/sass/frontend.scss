@@ -6,6 +6,26 @@
     height: inherit;
 }
 
-body {
-    min-width: auto;
+body {min-width: auto;}
+.ui.full.height {min-height: 100vh;}
+.pushable > .pusher { padding-bottom: 55px;}
+
+// Sidebar
+.ui.sidebar ~ .pusher {
+    transition: 500ms ease, -webkit-transform 500ms ease;
 }
+
+/* Desktop */
+
+@media screen and (min-width: 770px) {
+    .ui.visible.overlay.sidebar ~ .pusher {
+        padding-right: 250px;
+    }
+}
+
+// Sticky bottom bar
+// .ui.vertical.menu.ui.sidebar.bottom.visible {
+//     position: sticky !important;
+//     bottom: 0 !important;
+// }
+
