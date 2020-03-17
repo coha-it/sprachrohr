@@ -5,8 +5,8 @@
       <sui-sidebar-pusher class="ui full height" :dimmed="isDimmed()" >
         <child />
       </sui-sidebar-pusher>
-      <BottomBar @event="toggleSideBar" />
     </sui-sidebar-pushable>
+    <BottomBar @event="toggleSideBar" />
   </div>
 </template>
 
