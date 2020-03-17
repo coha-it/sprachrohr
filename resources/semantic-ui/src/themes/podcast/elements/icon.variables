@@ -1,13 +1,18 @@
-@fontPath: '../../themes/podcast/assets/fonts';
-@fontName: 'icons';
-@fallbackSRC: '';
+/*******************************
+             Icon
+*******************************/
 
-@width: 1em;
-@height: 1em;
+/*--------------
+   Font Files
+---------------*/
 
-@small: 13px;
-@medium: 16px;
-@large: 18px;
-@big : 20px;
-@huge: 28px;
-@massive: 32px;
+@fontName: 'linearicons';
+@src:
+  url("@{fontPath}/@{fontName}.eot?#iefix") format('embedded-opentype'),
+  url("@{fontPath}/@{fontName}.woff2") format('woff2'),
+  url("@{fontPath}/@{fontName}.woff") format('woff'),
+  url("@{fontPath}/@{fontName}.ttf") format('truetype'),
+  url("@{fontPath}/@{fontName}.svg#icons") format('svg')
+;
+@fallbackSRC: url("@{fontPath}/@{fontName}.eot");
+

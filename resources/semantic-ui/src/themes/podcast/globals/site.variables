@@ -8,7 +8,6 @@
 
 @headerFont        : 'Montserrat', 'Helvetica Neue', Arial, Helvetica, sans-serif;
 @pageFont          : 'Poppins', 'Helvetica Neue', Arial, Helvetica, sans-serif;
-@googleFontName    : 'Montserrat';
 
 /*-------------------
       Base Sizes
@@ -30,7 +29,7 @@
 --------------------*/
 
 @imagePath : '../../themes/podcast/assets/images';
-@fontPath  : '../../themes/podcast/assets/fonts';
+@fontPath  : '/dist/frontend/semantic/themes/podcast/assets/fonts';
 
 /*--------------
    Paragraphs
