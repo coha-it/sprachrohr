@@ -1,5 +1,5 @@
-@fontPath: '../../themes/podcast/assets/fonts/linear';
-@fontName: 'linear';
+@fontPath: '../../themes/podcast/assets/fonts';
+@fontName: 'icons';
 @fallbackSRC: '';
 
 @width: 1em;
