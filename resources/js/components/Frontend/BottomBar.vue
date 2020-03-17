@@ -6,6 +6,15 @@
     visible
     position="fixed"
   >
+
+  <!-- audio element -->
+  <vue-plyr>
+    <audio>
+      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3" type="audio/mp3"/>
+      <source src="audio.ogg" type="audio/ogg"/>
+    </audio>
+  </vue-plyr>
+
     <sui-menu-item to="/">
       <sui-icon name="home" />
       Home
