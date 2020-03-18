@@ -1,6 +1,11 @@
 <template>
   <!-- audio element -->
-  <vue-plyr v-show="$store.state.song" ref="plyr">
+  <vue-plyr
+    ref="plyr"
+    class="podcast_player_wrapper"
+    :class="$store.state.podcast ? '' :'disabled'"
+    style="width: 100%;"
+  >
     <audio>
       <!-- <source src="https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/cooking.mp3" type="audio/mp3"> -->
     </audio>
@@ -20,13 +25,13 @@ export default {
 
   computed: {
     ...mapGetters({
-      songs: 'music/songs'
+      podcasts: 'audio/podcasts'
     }),
     player () {
       return this.$refs.plyr.player
     },
-    song () {
-      return this.$store.state.song
+    podcast () {
+      return this.$store.state.podcast
     }
   },
 
@@ -34,29 +39,62 @@ export default {
     // this.player.config.iconUrl = 'test'
     this.player.config.autoplay = true
 
-    setInterval(() => {
-      if (this.song) {
-        this.saveTime()
+    // ON ready
+    this.player.on('ready', event => {
+      if (this.podcast) {
+        // Look for old Data
+        let oldInstance = this.getLocalStorage(this.podcast.id)
+
+        // Old Data Found
+        if (oldInstance) {
+          let time = oldInstance.currentTime
+          this.player.media.currentTime = time
+        }
       }
+    })
+
+    setInterval(() => {
+      this.saveTime()
     }, 5 * 1000)
   },
 
   methods: {
     saveTime () {
-      let id = this.song.id
-      let time = this.player.media.currentTime
-      let storage = localStorage
+      if (
+        this.podcast &&
+        this.player &&
+        this.player.media &&
+        this.player.media.currentTime > 0
+      ) {
+        let id = this.podcast.id
+        let time = this.player.media.currentTime
 
-      storage['song-' + id] = JSON.stringify({
+        this.setLocalStorage(id, time)
+      }
+    },
+    storageAlias (id) {
+      return '__podcast-' + id
+    },
+    getLocalStorage (id) {
+      let oOld = localStorage[this.storageAlias(id)]
+
+      if (oOld) {
+        let jOld = JSON.parse(oOld)
+        return jOld
+      }
+      return false
+    },
+    setLocalStorage (id, time) {
+      localStorage[this.storageAlias(id)] = JSON.stringify({
         currentTime: time
       })
     },
     isPlaying () {
       return this.player && this.player.playing
     },
-    changeSong (song) {
+    changePodcast (podcast) {
       // Change Source
-      this.player.source = song
+      this.player.source = podcast
 
       // Keep Playing
       // this.player.config.autoplay = this.player.playing
@@ -71,12 +109,21 @@ export default {
   },
 
   watch: {
-    '$store.state.song': {
+    '$store.state.podcast': {
       handler: function (o, n) {
-        this.changeSong(this.$store.state.song)
+        this.changePodcast(this.$store.state.podcast)
       },
       deep: true
     }
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.podcast_player_wrapper {
+  &.disabled {
+    pointer-events: none;
+    opacity: .5;
+  }
+}
+</style>

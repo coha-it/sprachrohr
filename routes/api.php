@@ -41,7 +41,7 @@ Route::group(['middleware' => 'guest:api'], function () {
 
 
 Route::group(['middleware' => 'api'], function () {
-    Route::get('songs', function() {
+    Route::get('podcasts', function() {
         $arr = [
             [
               'id' => 1,

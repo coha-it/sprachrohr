@@ -7,9 +7,6 @@
     position="fixed"
   >
     <Player />
-
-    <sui-menu-item to="/" @click="toggleSideBar()">Menu</sui-menu-item>
-
   </sui-menu>
 </template>
 <script>
@@ -23,9 +20,6 @@ export default {
   },
 
   methods: {
-    toggleSideBar () {
-      this.$emit('event')
-    }
   }
 }
 </script>

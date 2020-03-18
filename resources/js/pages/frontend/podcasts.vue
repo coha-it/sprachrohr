@@ -1,21 +1,29 @@
 <template>
   <div class="ui basic segment">
-    <div v-for="(song, i) in songs" :key="i" class="ui card" style="max-width: 100%; min-width: 100%;">
+    <h1>Podcasts</h1>
+    <div v-for="(podcast, i) in podcasts" :key="i" class="ui card" style="max-width: 100%; min-width: 100%;">
       <div class="content" style="padding: 0;">
         <div class="ui items">
           <div class="item">
             <div class="ui medium image">
-              <img :src="song.image">
+              <img :src="podcast.image">
             </div>
             <div class="content" style="padding: 1rem;">
               <a class="header">
-                {{ song.title }}
+                {{ podcast.title }}
               </a>
               <div class="meta">
                 <span class="cinema">Union Square 14</span><br>
-                <sui-button primary @click="clickedPlay(song)">
-                  Anhören
-                </sui-button>
+                <template v-if="getCurrentPodcastId() === podcast.id">
+                  <sui-button primary disabled active readonly>
+                    Wird abgespielt
+                  </sui-button>
+                </template>
+                <template v-else>
+                  <sui-button primary @click="clickedPlay(podcast)">
+                    Anhören
+                  </sui-button>
+                </template>
               </div>
               <div class="description">
                 <p></p>
@@ -39,22 +47,29 @@ export default {
 
   computed: {
     ...mapGetters({
-      songs: 'music/songs'
-    })
+      podcasts: 'audio/podcasts'
+    }),
+    podcast () {
+      return this.$store && this.$store.state ? this.$store.state.podcast : null
+    }
   },
 
   created: function () {
-    this.$store.dispatch('music/fetchSongs')
+    this.$store.dispatch('audio/fetchPodcasts')
   },
 
   methods: {
-    clickedPlay (song) {
-      // this.$root.$data.song = song
+    clickedPlay (podcast) {
+      // this.$root.$data.podcast = podcast
       this.$set(
         this.$store.state,
-        'song',
-        song
+        'podcast',
+        podcast
       )
+    },
+
+    getCurrentPodcastId () {
+      return this.podcast ? this.podcast.id : 0
     }
   },
 
