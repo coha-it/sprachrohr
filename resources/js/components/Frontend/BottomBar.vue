@@ -6,35 +6,22 @@
     visible
     position="fixed"
   >
+    <Player />
 
-  <!-- audio element -->
-  <vue-plyr>
-    <audio>
-      <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-14.mp3" type="audio/mp3"/>
-      <source src="audio.ogg" type="audio/ogg"/>
-    </audio>
-  </vue-plyr>
+    <sui-menu-item to="/" @click="toggleSideBar()">Menu</sui-menu-item>
 
-    <sui-menu-item to="/">
-      <sui-icon name="home" />
-      Home
-    </sui-menu-item>
-    <sui-menu-item to="/">
-      <sui-icon name="gamepad" />
-      Games
-    </sui-menu-item>
-    <sui-menu-item to="/">
-      <sui-icon name="camera" />
-      Channels
-    </sui-menu-item>
-    <sui-menu-item to="/" @click="toggleSideBar()">
-      <sui-icon name="settings" />
-      Menu
-    </sui-menu-item>
   </sui-menu>
 </template>
 <script>
+import Player from '~/components/Frontend/Player'
+
 export default {
+  name: 'BottomBar',
+
+  components: {
+    Player
+  },
+
   methods: {
     toggleSideBar () {
       this.$emit('event')

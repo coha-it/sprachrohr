@@ -11,6 +11,12 @@ export default [
     component: page('frontend/start.vue')
   },
 
+  {
+    path: '/podcasts',
+    name: 'podcasts',
+    component: page('frontend/podcasts.vue')
+  },
+
   // { path: '/', name: 'welcome', component: page('welcome.vue') },
 
   // { path: '/login', name: 'login', component: page('auth/login.vue') },

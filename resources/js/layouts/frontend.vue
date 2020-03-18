@@ -1,11 +1,11 @@
 <template>
   <div>
     <sui-sidebar-pushable>
-      <SideBar :visible="isSideBarVisible()" />
-      <sui-sidebar-pusher class="ui full height" :dimmed="isDimmed()" >
-        <child />
+      <sui-sidebar-pusher class="ui full height" :class="isSideBarVisible() ? 'pushed' : 'unpushed'" :dimmed="isDimmed()">
+        <child @event="clickedPlay" />
       </sui-sidebar-pusher>
     </sui-sidebar-pushable>
+    <SideBar :visible="isSideBarVisible()" />
     <BottomBar @event="toggleSideBar" />
   </div>
 </template>
@@ -43,6 +43,9 @@ export default {
   },
 
   methods: {
+    clickedPlay: function () {
+      console.log('joghurtmann von parent')
+    },
     isSideBarVisible: function () {
       return this.window.width >= this.window.iMobileWidth || this.visible
     },
