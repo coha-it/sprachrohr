@@ -13,7 +13,7 @@ $config = [
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
   <title>{{ config('app.name') }}</title>
-  
+
   @if(App::environment('production'))
     {{-- Production --}}
     <link rel="stylesheet" href="{{ asset('dist/frontend/semantic/semantic.min.css') }}">
@@ -39,6 +39,12 @@ $config = [
   @else
     {{-- Coding --}}
     {{-- <script src="{{ asset('dist/frontend/semantic/semantic.js') }}"></script> --}}
+
+    <script>
+      window.__VUE_DEVTOOLS_HOST__ = 'localhost' // default: localhost
+      window.__VUE_DEVTOOLS_PORT__ = '8098' // default: 8098
+    </script>
+    <script src="http://localhost:8098"></script>
   @endif
   <script src="{{ mix('dist/frontend/js/frontend.js') }}"></script>
 

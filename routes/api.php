@@ -50,8 +50,8 @@ Route::group(['middleware' => 'api'], function () {
               'image' => 'https://semantic-ui.com/images/wireframe/image.png',
               'sources' => [
                 [
-                  'src' => 'https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/1+Hour+of+Dark+Piano+Music+III+_+Dark+Piano+For+Dark+Thoughts+(152kbit_Opus).ogg',
-                  'type' => 'audio/ogg'
+                  'src' => 'https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/stratosphere.mp3',
+                  'type' => 'audio/mp3'
                 ]
               ]
             ],
@@ -59,11 +59,11 @@ Route::group(['middleware' => 'api'], function () {
               'id' => 2,
               'type' => 'audio',
               'title' => 'Duster - Experimental Dust (2000)',
-              'image' => 'https://e.snmc.io/i/600/w/46cc6def48c2ae556804c28ae3662194/6898628',
+              'image' => asset('/media/images/6898628.jpg'),
               'sources' => [
                 [
-                  'src' => 'https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/Duster+-+Experimental+Dust+(2000)+(Full+Album)+(152kbit_Opus).ogg',
-                  'type' => 'audio/ogg'
+                  'src' => 'https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/cooking.mp3',
+                  'type' => 'audio/mp3'
                 ]
               ]
             ],
@@ -74,8 +74,8 @@ Route::group(['middleware' => 'api'], function () {
               'image' => 'https://semantic-ui.com/images/wireframe/image.png',
               'sources' => [
                 [
-                  'src' => 'https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/ATMOSPHERIC+GOTHIC+HORROR+READING+MUSIC+_+H.P+Lovecraft%2C+Stephen+King%2C+Edgar+Allen+Poe+(152kbit_Opus).ogg',
-                  'type' => 'audio/ogg'
+                  'src' => 'https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/the-landing.mp3',
+                  'type' => 'audio/mp3'
                 ]
               ]
             ]
