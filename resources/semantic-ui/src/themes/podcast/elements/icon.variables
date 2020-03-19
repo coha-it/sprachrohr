@@ -6,6 +6,7 @@
    Font Files
 ---------------*/
 
+/*
 @fontName: 'linearicons';
 @src:
   url("@{fontPath}/@{fontName}.eot?#iefix") format('embedded-opentype'),
@@ -15,4 +16,6 @@
   url("@{fontPath}/@{fontName}.svg#icons") format('svg')
 ;
 @fallbackSRC: url("@{fontPath}/@{fontName}.eot");
+*/
+
 

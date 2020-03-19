@@ -28,7 +28,7 @@
         Paths
 --------------------*/
 
-@imagePath : '../../themes/podcast/assets/images';
+@imagePath : '/dist/frontend/semantic/themes/podcast/assets/images';
 @fontPath  : '/dist/frontend/semantic/themes/podcast/assets/fonts';
 
 /*--------------
