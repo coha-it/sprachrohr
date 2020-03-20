@@ -12,7 +12,6 @@
     <sui-menu-item to="/">
       <sui-icon name="camera" /> Channels
     </sui-menu-item>
-    <sui-checkbox v-model="visible" label="visible" />
   </sui-menu>
 </template>
 
