@@ -38,6 +38,10 @@ export default {
   mounted () {
     // this.player.config.iconUrl = 'test'
     this.player.config.autoplay = true
+    this.player.config.loop = { active: true }
+
+    // this.player.config.controls = ['play-large', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen']
+    // this.player.config.settings = ['captions', 'quality', 'speed', 'loop']
 
     // ON ready
     this.player.on('ready', event => {
