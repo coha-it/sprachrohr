@@ -1,6 +1,6 @@
 <template>
   <div class="ui mobile only grid">
-    <div class="icon menu" @click="toggleSideBar()" />
+    <div class="lnr menu coha_menu" @click="toggleSideBar()" />
   </div>
 </template>
 <script>
@@ -13,7 +13,7 @@ export default {
 }
 </script>
 <style lang="scss" scoped>
-.icon.menu {
+.coha_menu {
     position: fixed;
     z-index: 1;
     cursor: pointer;

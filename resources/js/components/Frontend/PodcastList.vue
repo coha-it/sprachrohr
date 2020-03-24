@@ -12,7 +12,9 @@
                 {{ podcast.title }}
               </a>
               <div class="meta">
-                <span class="cinema">Union Square 14</span><br>
+                <p class="desc short">
+                  {{ podcast.desc_short }}
+                </p>
                 <template v-if="getCurrentPodcastId() === podcast.id">
                   <sui-button primary disabled active readonly>
                     Wird abgespielt

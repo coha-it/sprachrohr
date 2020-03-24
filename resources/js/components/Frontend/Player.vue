@@ -41,16 +41,7 @@ export default {
 
     // ON ready
     this.player.on('ready', event => {
-      if (this.podcast) {
-        // Look for old Data
-        let oldInstance = this.getLocalStorage(this.podcast.id)
-
-        // Old Data Found
-        if (oldInstance) {
-          let time = oldInstance.currentTime
-          this.player.media.currentTime = time
-        }
-      }
+      this.loadTime()
     })
 
     setInterval(() => {
@@ -70,6 +61,18 @@ export default {
         let time = this.player.media.currentTime
 
         this.setLocalStorage(id, time)
+      }
+    },
+    loadTime () {
+      if (this.podcast) {
+        // Look for old Data
+        let oldInstance = this.getLocalStorage(this.podcast.id)
+
+        // Old Data Found
+        if (oldInstance) {
+          let time = oldInstance.currentTime
+          this.player.media.currentTime = time
+        }
       }
     },
     storageAlias (id) {
@@ -92,30 +95,26 @@ export default {
     isPlaying () {
       return this.player && this.player.playing
     },
-    changePodcast (podcast) {
+    changeAudioSource () {
+      // Define Source
+      let source = this.podcast
+
+      // Set Audio
+      source.type = 'audio'
+
       // Change Source
-      this.player.source = podcast
-
-      // Keep Playing
-      // this.player.config.autoplay = this.player.playing
-      // this.player.config.autoplay = true
-
-      /*
-      this.player.config.title = 'JA'
-      this.player.config.controls = ['play-large', 'title', 'play', 'progress', 'current-time', 'mute', 'volume', 'captions', 'settings', 'pip', 'airplay', 'fullscreen']
-      this.player.config.settings = ['captions', 'quality', 'speed', 'loop']
-      */
+      this.player.source = source
     }
   },
 
   watch: {
     '$store.state.podcast': {
       handler: function (o, n) {
-        this.changePodcast(this.$store.state.podcast)
+        this.changeAudioSource()
       },
       deep: true
     }
-  },
+  }
 }
 </script>
 
