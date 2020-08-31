@@ -2,7 +2,11 @@ import Vue from 'vue'
 import store from '~/store'
 import router from '~/router'
 import i18n from '~/plugins/i18n'
-import App from '~/components/Frontend/App'
+import App from '~/App'
+
+// Music Player
+import VuePlyr from 'vue-plyr'
+// import 'vue-plyr/dist/vue-plyr.css' // only if your build system can import css, otherwise import it wherever you would import your css.
 
 import '~/plugins'
 import '~/components'
@@ -20,11 +24,9 @@ Vue.component('v-style', {
   }
 })
 
-// Music Player
-import VuePlyr from 'vue-plyr'
-//import 'vue-plyr/dist/vue-plyr.css' // only if your build system can import css, otherwise import it wherever you would import your css.
-
 Vue.use(VuePlyr)
+
+Vue.config.devtools = true
 
 /* eslint-disable no-new */
 new Vue({

@@ -12,7 +12,7 @@ mix
     // 'node_modules/semantic-ui-sass/semantic-ui.js',
     'public/dist/frontend/semantic/semantic.js',
     'node_modules/semantic-ui-vue/dist/umd/semantic-ui-vue.min.js',
-    'resources/js/frontend.js'
+    'resources/js/main.js'
   ], 'public/dist/frontend/js/frontend.js')
   .autoload({
     jquery: ['$', 'window.jQuery', 'jQuery']
