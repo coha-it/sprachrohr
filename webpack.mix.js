@@ -61,6 +61,22 @@ mix.webpackConfig({
   output: {
     chunkFilename: 'dist/frontend/js/[chunkhash].js',
     path: mix.config.hmr ? '/' : path.resolve(__dirname, './public')
+  },
+  module: {
+    rules: [
+      {
+        test: /\.pug$/,
+        oneOf: [
+          {
+            resourceQuery: /^\?vue/,
+            use: ['pug-plain-loader']
+          },
+          {
+            use: ['raw-loader', 'pug-plain-loader']
+          }
+        ]
+      }
+    ]
   }
 })
 
