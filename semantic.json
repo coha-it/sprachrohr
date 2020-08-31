@@ -1,5 +1,5 @@
 {
-  "base": "resources/semantic-ui",
+  "base": "semantic/",
   "paths": {
     "source": {
       "config": "src/theme.config",
@@ -8,12 +8,12 @@
       "themes": "src/themes/"
     },
     "output": {
-      "packaged": "../../public/dist/frontend/semantic/",
-      "uncompressed": "../../public/dist/frontend/semantic/components/",
-      "compressed": "../../public/dist/frontend/semantic/components/",
-      "themes": "../../public/dist/frontend/semantic/themes/"
+      "packaged": "../public/dist/frontend/semantic/",
+      "uncompressed": "../public/dist/frontend/semantic/components/",
+      "compressed": "../public/dist/frontend/semantic/components/",
+      "themes": "../public/dist/frontend/semantic/themes/"
     },
-    "clean": "../../public/dist/frontend/semantic/"
+    "clean": "../public/dist/frontend/semantic/"
   },
   "permission": false,
   "autoInstall": false,
@@ -23,39 +23,18 @@
     "site",
     "button",
     "container",
-    "divider",
-    "header",
     "icon",
     "image",
     "input",
     "label",
-    "list",
-    "loader",
     "segment",
-    "step",
-    "breadcrumb",
-    "form",
-    "grid",
     "menu",
     "card",
     "comment",
-    "feed",
     "item",
     "checkbox",
-    "dimmer",
-    "modal",
-    "popup",
-    "progress",
-    "search",
-    "shape",
     "sidebar",
-    "sticky",
-    "tab",
-    "transition",
-    "api",
-    "form",
-    "state",
-    "visibility"
+    "api"
   ],
-  "version": "2.4.2"
+  "version": "2.8.6"
 }
