@@ -45,3 +45,22 @@ body {min-width: auto;}
   cursor: pointer;
 }
 
+// Fix Card Images
+@media screen and (min-width: 770px) {
+  .ui.cards .card {
+    display: flex;
+    flex-flow: row;
+    width: 80%;
+    max-width: 770px;
+
+    .image {
+      max-width: 300px;
+      align-self: stretch;
+
+      img {
+        height: 100%;
+        object-fit: cover;
+      }
+    }
+  }
+}
