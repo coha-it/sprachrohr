@@ -17,6 +17,12 @@ export default [
     component: page('frontend/podcasts.vue')
   },
 
+  {
+    path: '/podcast/:id',
+    name: 'podcast',
+    component: page('frontend/podcast.vue')
+  },
+
   // { path: '/', name: 'welcome', component: page('welcome.vue') },
 
   { path: '/login', name: 'login', component: page('auth/login.vue') },

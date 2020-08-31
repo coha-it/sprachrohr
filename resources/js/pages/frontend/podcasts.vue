@@ -1,8 +1,7 @@
-<template>
-  <div class="ui basic segment">
-    <h1>Podcasts</h1>
-    <PodcastList />
-  </div>
+<template lang="pug">
+.ui.basic.segment
+  h1 Podcasts
+  PodcastList
 </template>
 <script>
 import PodcastList from '~/components/Frontend/PodcastList'
