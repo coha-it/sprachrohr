@@ -31,7 +31,13 @@ body {min-width: auto;}
     }
 }
 
+.pointer {
+  cursor: pointer;
+}
 
+.half-opacity {
+  opacity: .5;
+}
 
 // Sticky bottom bar
 // .ui.vertical.menu.ui.sidebar.bottom.visible {

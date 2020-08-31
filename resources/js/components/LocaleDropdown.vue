@@ -1,18 +1,12 @@
-<template>
-  <li class="nav-item dropdown">
-    <a class="nav-link dropdown-toggle" href="#" role="button"
-       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-    >
-      {{ locales[locale] }}
-    </a>
-    <div class="dropdown-menu">
-      <a v-for="(value, key) in locales" :key="key" class="dropdown-item" href="#"
-         @click.prevent="setLocale(key)"
-      >
-        {{ value }}
-      </a>
-    </div>
-  </li>
+<template lang="pug">
+// {{ locales[locale] }}
+div
+  i.flag.pointer(
+    v-for='(value, key) in locales'
+    :key='key'
+    :class="getFlag(value) + ' ' + (locales[locale] == value ? 'active' : 'half-opacity')"
+    @click.prevent='setLocale(key)'
+  )
 </template>
 
 <script>
@@ -31,6 +25,19 @@ export default {
         loadMessages(locale)
 
         this.$store.dispatch('lang/setLocale', { locale })
+      }
+    },
+    getFlag (loc) {
+      let l = loc.toLowerCase()
+      switch (l) {
+        case 'en':
+          return 'us'
+
+        case '中文':
+          return 'cn'
+
+        default:
+          return l
       }
     }
   }

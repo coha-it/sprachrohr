@@ -30,18 +30,24 @@
 
     // Remember
     .field
-      sui-checkbox(v-model='remember' :label="$t('remember_me')" tabindex='0' name='remember')
+      sui-checkbox(
+        v-model='remember'
+        :label="$t('remember_me')"
+        name='remember'
+      )
+
+    // Login Button
+    .field
+      button.ui.button(type='submit' :loading='form.busy') {{ $t(&apos;login&apos;) }}
+
+    // Login with Github
+    .field
+      login-with-github
 
     // Forgot PW
     .field
       router-link(:to="{ name: 'password.request' }")
         | {{ $t('forgot_password') }}
-
-    // Login Button
-    button.ui.button(type='submit' :loading='form.busy') {{ $t(&apos;login&apos;) }}
-
-    // Login with Github
-    login-with-github
 </template>
 
 <script>
@@ -83,7 +89,7 @@ export default {
       await this.$store.dispatch('auth/fetchUser')
 
       // Redirect home.
-      this.$router.push({ name: 'home' })
+      this.$router.push({ name: 'start' })
     }
   }
 }
