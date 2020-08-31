@@ -12,6 +12,13 @@ export default [
   },
 
   {
+    path: '/demo',
+    name: 'demo',
+    component: page('frontend/demo.vue')
+  },
+
+
+  {
     path: '/podcasts',
     name: 'podcasts',
     component: page('frontend/podcasts.vue')

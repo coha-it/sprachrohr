@@ -1,31 +1,31 @@
-<template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('verify_email')">
-        <form @submit.prevent="send" @keydown="form.onKeydown($event)">
-          <alert-success :form="form" :message="status" />
+<template lang="pug">
+.ui.container.vertical.segment
+  transition(name="fade")
+    sui-message(
+      v-if="status && form"
+      :header="$t('Look in your Mails')"
+      :form='form'
+      :content="status"
+      dismissable
+    )
 
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email" />
-            </div>
-          </div>
+  form.ui.form.content(@submit.prevent='send' @keydown='form.onKeydown($event)')
+    h1 {{ $t('verify_email') }}
 
-          <!-- Submit Button -->
-          <div class="form-group row">
-            <div class="col-md-9 ml-md-auto">
-              <v-button :loading="form.busy">
-                {{ $t('send_verification_link') }}
-              </v-button>
-            </div>
-          </div>
-        </form>
-      </card>
-    </div>
-  </div>
+    // Email
+    .field(:class="{'error': form.errors.has('email')}")
+      label {{ $t('email') }}
+      sui-input(
+        v-model='form.email'
+        :class="{ 'error': form.errors.has('email') }"
+        :placeholder="$t('email')"
+        type='email'
+        name='email'
+      )
+      has-error(:form='form', field='email')
+
+    // Submit Button
+    sui-button(primary :loading='form.busy') {{ $t('send_verification_link') }}
 </template>
 
 <script>

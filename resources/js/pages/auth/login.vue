@@ -1,55 +1,47 @@
-<template>
-  <div class="row">
-    <div class="col-lg-8 m-auto">
-      <card :title="$t('login')">
-        <form @submit.prevent="login" @keydown="form.onKeydown($event)">
-          <!-- Email -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('email') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.email" :class="{ 'is-invalid': form.errors.has('email') }" class="form-control" type="email" name="email">
-              <has-error :form="form" field="email" />
-            </div>
-          </div>
+<template lang="pug">
+.ui.container.vertical.segment
+  form.ui.form.content(@submit.prevent='login', @keydown='form.onKeydown($event)' style="max-width: 500px")
+    h1 {{ $t('login') }}
 
-          <!-- Password -->
-          <div class="form-group row">
-            <label class="col-md-3 col-form-label text-md-right">{{ $t('password') }}</label>
-            <div class="col-md-7">
-              <input v-model="form.password" :class="{ 'is-invalid': form.errors.has('password') }" class="form-control" type="password" name="password">
-              <has-error :form="form" field="password" />
-            </div>
-          </div>
+    // Email
+    .field(:class="{'error': form.errors.has('email')}")
+      label {{ $t('email') }}
+      sui-input(
+        v-model='form.email'
+        :class="{ 'error': form.errors.has('email') }"
+        :placeholder="$t('email')"
+        type='email'
+        name='email'
+        :loading="loading"
+      )
+      has-error(:form='form', field='email')
 
-          <!-- Remember Me -->
-          <div class="form-group row">
-            <div class="col-md-3" />
-            <div class="col-md-7 d-flex">
-              <checkbox v-model="remember" name="remember">
-                {{ $t('remember_me') }}
-              </checkbox>
+    // Password
+    .field(:class="{'error': form.errors.has('password')}")
+      label {{ $t('password') }}
+      sui-input(
+        v-model='form.password'
+        :class="{ 'error': form.errors.has('password') }"
+        type='password'
+        name='password'
+        :placeholder='$t("password")'
+      )
+      has-error(:form='form', field='password')
 
-              <router-link :to="{ name: 'password.request' }" class="small ml-auto my-auto">
-                {{ $t('forgot_password') }}
-              </router-link>
-            </div>
-          </div>
+    // Remember
+    .field
+      sui-checkbox(v-model='remember' :label="$t('remember_me')" tabindex='0' name='remember')
 
-          <div class="form-group row">
-            <div class="col-md-7 offset-md-3 d-flex">
-              <!-- Submit Button -->
-              <v-button :loading="form.busy">
-                {{ $t('login') }}
-              </v-button>
+    // Forgot PW
+    .field
+      router-link(:to="{ name: 'password.request' }")
+        | {{ $t('forgot_password') }}
 
-              <!-- GitHub Login Button -->
-              <login-with-github />
-            </div>
-          </div>
-        </form>
-      </card>
-    </div>
-  </div>
+    // Login Button
+    button.ui.button(type='submit' :loading='form.busy') {{ $t(&apos;login&apos;) }}
+
+    // Login with Github
+    login-with-github
 </template>
 
 <script>
@@ -72,7 +64,8 @@ export default {
       email: '',
       password: ''
     }),
-    remember: false
+    remember: false,
+    loading: null
   }),
 
   methods: {

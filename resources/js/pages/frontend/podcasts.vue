@@ -5,16 +5,9 @@
 </template>
 <script>
 import PodcastList from '~/components/Frontend/PodcastList'
-
 export default {
-
   components: {
     PodcastList
-  },
-
-  data () {
-    return {
-    }
   }
 }
 </script>
