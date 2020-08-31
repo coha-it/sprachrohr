@@ -1,15 +1,8 @@
-<template>
-  <!-- audio element -->
-  <vue-plyr
-    ref="plyr"
-    class="podcast_player_wrapper"
-    :class="$store.state.podcast ? '' :'disabled'"
-    style="width: 100%;"
-  >
-    <audio>
-      <!-- <source src="https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/cooking.mp3" type="audio/mp3"> -->
-    </audio>
-  </vue-plyr>
+<template lang="pug">
+// audio element
+vue-plyr.podcast_player_wrapper(ref='plyr' :class="$store.state.podcast ? '' :'disabled'" style='width: 100%;')
+  audio
+    // <source src="https://corporatehappiness.s3.eu-central-1.amazonaws.com/testing/music/cooking.mp3" type="audio/mp3">
 </template>
 <script>
 import { mapGetters } from 'vuex'
