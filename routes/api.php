@@ -38,8 +38,6 @@ Route::group(['middleware' => 'guest:api'], function () {
     Route::get('oauth/{driver}/callback', 'Auth\OAuthController@handleProviderCallback')->name('oauth.callback');
 });
 
-
-
 Route::group(['middleware' => 'api'], function () {
     Route::get('podcasts', 'PodcastCtrl@getPodcasts');
 });
