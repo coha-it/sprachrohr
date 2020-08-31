@@ -1,19 +1,16 @@
-<template>
-  <div>
-    <sui-sidebar-pushable>
-      <sui-sidebar-pusher
-        class="ui full height"
-        :class="isSideBarVisible() ? 'pushed' : 'unpushed'"
-        :dimmed="isDimmed()"
-        @click="(isSideBarVisible()) ? toggleSideBar() : null"
-      >
-        <child @event="clickedPlay" />
-      </sui-sidebar-pusher>
-    </sui-sidebar-pushable>
-    <MenuButton @event="toggleSideBar" />
-    <SideBar :visible="isSideBarVisible()" />
-    <BottomBar />
-  </div>
+<template lang="pug">
+div
+  sui-sidebar-pushable
+    sui-sidebar-pusher(
+      class="ui full height"
+      :class="isSideBarVisible() ? 'pushed' : 'unpushed'"
+      :dimmed="isDimmed()"
+      @click="(isSideBarVisible()) ? toggleSideBar() : null"
+    )
+      child(@event="clickedPlay")
+  MenuButton(@event="toggleSideBar")
+  SideBar(:visible="isSideBarVisible()")
+  BottomBar
 </template>
 
 <script>

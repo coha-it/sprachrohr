@@ -8,7 +8,7 @@ use App\Podcast;
 class PodcastCtrl extends Controller
 {
     public function getPodcasts() {
-        return Podcast::with('sources')
+        return Podcast::with(['sources', 'tags', 'author'])
                         ->get()
                         ->makeHidden([
                             'desc_long'
@@ -17,7 +17,7 @@ class PodcastCtrl extends Controller
     }
 
     public function getPodcast(Request $request, $id) {
-        return Podcast::with('sources')
+        return Podcast::with(['sources', 'tags', 'author'])
                 ->find($id)
                 ->makeHidden([
                     'desc_short'

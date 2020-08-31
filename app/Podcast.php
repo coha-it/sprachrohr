@@ -20,19 +20,35 @@ class Podcast extends Model
     ];
 
     /**
-     * Get the Sources
+     * Get the Author
      */
-    public function sources()
+    public function author()
     {
-        return $this->hasMany('App\Source')->orderBy('prio');
+        return $this->belongsTo(Author::class);
     }
 
     /**
      * Get the Sources
      */
+    public function sources()
+    {
+        return $this->hasMany(Source::class)->orderBy('prio');
+    }
+
+    /**
+     * Get the Audios
+     */
     public function audios()
     {
         return $this->sources();
+    }
+
+    /**
+     * Many to Many Relation to Tags
+     */
+    public function tags()
+    {
+        return $this->belongsToMany(Tag::class);
     }
 
     public function getTypeAttribute() {

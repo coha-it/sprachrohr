@@ -11,7 +11,7 @@ class Tag extends Model
      *
      * @var string
      */
-    protected $table = 'p_tags';
+    protected $table = 'tags';
 
     /**
      * The attributes that should be visible in arrays.
@@ -25,6 +25,6 @@ class Tag extends Model
      */
     public function podcast()
     {
-        return $this->belongsTo('App\Podcast'); //->pluck('src', 'type');
+        return $this->belongsToMany(Podcast::class);
     }
 }

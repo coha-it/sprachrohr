@@ -19,10 +19,9 @@
       .description
         p
       .extra
-        .ui.label IMAX
-        .ui.label
-          i.globe.icon
-          | Additional Languages
+        .ui.label(v-for="tag in podcast.tags")
+          i.icon(v-if="tag.icon" class="tag.icon")
+          | {{ tag.name }}
 </template>
 <script>
 import { mapGetters } from 'vuex'

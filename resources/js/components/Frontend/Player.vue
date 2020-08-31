@@ -37,6 +37,7 @@ export default {
   watch: {
     '$store.state.podcast': {
       handler: function (o, n) {
+        this.$set(this.$store.state, 'player', this.player)
         this.changeAudioSource()
       },
       deep: true
