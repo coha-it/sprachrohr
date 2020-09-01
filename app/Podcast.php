@@ -28,6 +28,14 @@ class Podcast extends Model
     }
 
     /**
+     * Get the Comments
+     */
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    /**
      * Get the Sources
      */
     public function sources()

@@ -1,6 +1,17 @@
 <template lang="pug">
 // audio element
 div(style="width: 100%")
+
+  // DEBUG
+  .in-comments-wrapper(v-if="$store.state.podcast")
+    .in-comments-inner
+      .in-comment(
+        v-for="comment in comments"
+        :style="'left: ' + (comment.seconds / duration * 100).toFixed(2) + '%'"
+      )
+        .text.outer
+          .text.inner {{ comment.text }}
+
   vue-plyr.podcast_player_wrapper(
     ref='plyr'
     :class="$store.state.podcast ? '' :'disabled'"
@@ -17,7 +28,9 @@ export default {
 
   data () {
     return {
-      savingInterval: null
+      savingInterval: null,
+      duration: 0,
+      activeComments: []
     }
   },
 
@@ -31,14 +44,26 @@ export default {
     },
     podcast () {
       return this.$store.state.podcast
+    },
+    comments () {
+      return this.$store.state.podcast.comments
     }
   },
 
   watch: {
     '$store.state.podcast': {
       handler: function (o, n) {
+        // Set Player to State
         this.$set(this.$store.state, 'player', this.player)
-        this.changeAudioSource()
+
+        // Define Source
+        let source = this.podcast
+
+        // Set Audio
+        source.type = 'audio'
+
+        // Change Source
+        this.player.source = source
       },
       deep: true
     }
@@ -55,6 +80,20 @@ export default {
     // ON ready
     this.player.on('ready', event => {
       this.loadTime()
+
+      setTimeout(() => {
+        this.setDuration()
+      }, 50)
+    })
+
+    this.player.on('timeupdate', event => {
+      // const curr = this.player.media.currentTime
+      // const comments = this.podcast.comments
+
+      // If Duration isn't set
+      if (this.duration <= 0) {
+        this.setDuration()
+      }
     })
   },
 
@@ -65,6 +104,11 @@ export default {
   },
 
   methods: {
+
+    setDuration () {
+      this.duration = this.player.duration
+    },
+
     saveTime () {
       if (
         this.podcast &&
@@ -116,17 +160,6 @@ export default {
 
     isPlaying () {
       return this.player?.playing
-    },
-
-    changeAudioSource () {
-      // Define Source
-      let source = this.podcast
-
-      // Set Audio
-      source.type = 'audio'
-
-      // Change Source
-      this.player.source = source
     }
 
   }

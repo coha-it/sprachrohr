@@ -18,6 +18,6 @@ class Source extends Model
      */
     public function podcast()
     {
-        return $this->belongsTo('App\Podcast'); //->pluck('src', 'type');
+        return $this->belongsTo(Podcast::class); //->pluck('src', 'type');
     }
 }

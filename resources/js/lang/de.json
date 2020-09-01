@@ -1,4 +1,5 @@
 {
+  "author": "Autor",
   "ok": "Ok",
   "cancel": "Abbruch",
   "error_alert_title": "Huuups...",
@@ -127,6 +128,7 @@
   "minutes": "Minuten",
   "The given data was invalid.": "Die eingegebenen Daten sind nicht korrekt",
   "title": "Titel",
+  "tags": "Schlagworte",
   "subtitle": "Untertitel",
   "description": "Beschreibung",
   "Back to surveys": "Zurück zu den Umfragen",
