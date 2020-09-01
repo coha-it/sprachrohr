@@ -17,7 +17,12 @@ class PodcastCtrl extends Controller
     }
 
     public function getPodcast(Request $request, $id) {
-        return Podcast::with(['sources', 'tags', 'author', 'comments'])
+        return Podcast::with(['sources', 'tags', 'author'])
+                ->with(['comments' => function($c) {
+                    $c->where('proved', true);
+                    $c->orderBy('created_at', 'asc');
+                    // $c->limit(5);
+                }])
                 ->find($id)
                 ->makeHidden([
                     'desc_short'

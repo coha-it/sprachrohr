@@ -4,18 +4,19 @@
     .image
       img(:src='podcast.image')
     .content(style='padding: 1rem;')
-      router-link.header(:to="{name: 'podcast', params: {id: podcast.id}}")
+      router-link.header(:to="podcastRoute(podcast)")
         | {{ podcast.title }}
       .meta
         p.desc.short
           | {{ podcast.desc_short }}
+        // Visit Podcast button
+        sui-button(primary @click="$router.push(podcastRoute(podcast))") Zum Podcast
+        // Play Instant Button
         template(v-if="podcast.sources.length")
           template(v-if='getCurrentPodcastId() === podcast.id')
-            sui-button(primary='' disabled='' active='' readonly='')
-              | Wird abgespielt
-          template(v-else='')
-            sui-button(primary='' @click='clickedPlay(podcast)')
-              | Anh&ouml;ren
+            sui-button(disabled active readonly) Wird abgespielt
+          template(v-else)
+            sui-button(@click='clickedPlay(podcast)') Anh&ouml;ren
       .description
         p
       .extra
@@ -49,6 +50,12 @@ export default {
 
     getCurrentPodcastId () {
       return this.podcast ? this.podcast.id : 0
+    },
+
+    podcastRoute (podcast) {
+      return {
+        name: 'podcast', params: { id: podcast.id }
+      }
     }
   }
 

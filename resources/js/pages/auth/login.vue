@@ -1,5 +1,5 @@
 <template lang="pug">
-.ui.container.vertical.segment
+.ui.container.basic.segment
   form.ui.form.content(@submit.prevent='login', @keydown='form.onKeydown($event)' style="max-width: 500px")
     h1 {{ $t('login') }}
 

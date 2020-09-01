@@ -1,5 +1,5 @@
 <template lang="pug">
-.ui.container.vertical.segment
+.ui.container.basic.segment
 
   h1 {{ $t('register') }}
   p

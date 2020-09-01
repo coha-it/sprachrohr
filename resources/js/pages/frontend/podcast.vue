@@ -46,44 +46,39 @@
       | {{ podcast.author.name }}
       .sub.header {{ podcast.author.title }}
 
-  // Kommentare
-  template(v-if="podcast.comments.length")
-    h3 {{ $t('comments') }}
+  // Comments
+  br
+  Comments(:podcast="podcast")
 
-    sui-comment-group(threaded)
-      sui-comment(v-for="comment in podcast.comments")
-        sui-comment-avatar(v-if="comment.user" :src="comment.user.photo_url")
-        sui-comment-content
-          a(is='sui-comment-author') {{ comment.user.name }}
-          sui-comment-metadata
-            div Today at {{ comment.created_at }}
-          sui-comment-text {{ comment.text }}
-          sui-comment-actions
-            sui-comment-action(@click="jumpToSeconds(comment)")
-              | Bei {{ comment.seconds }} Sekunden
-
-  template(v-else)
-    h3 no comments yet
-
-  // Kommentar Hinzufügen
-  form
-    sui-button(content='Kommentar Verfassen' label-position='left' icon='edit')
+  // Comment-Form
+  br
+  CommentForm(v-if="commentable" :podcast="podcast")
 
 </template>
 <script>
 import { mapGetters } from 'vuex'
+import Comments from '~/components/Frontend/Comments'
+import CommentForm from '~/components/Frontend/CommentForm'
 
 export default {
 
+  components: {
+    Comments,
+    CommentForm
+  },
+
   data () {
     return {
-      loading: null
+      loading: null,
+      commentable: false
     }
   },
 
   computed: mapGetters({
     podcast: 'audio/podcast'
   }),
+
+  mounted () {},
 
   metaInfo () {
     return { title: this.podcast?.title }
@@ -116,16 +111,14 @@ export default {
 
     getCurrentPodcastId () {
       return this.podcast?.id
-    },
-
-    jumpToSeconds (comment) {
-      if (
-        this.$store.state?.player?.media &&
-        comment?.seconds
-      ) {
-        this.$store.state.player.media.currentTime = comment.seconds
-      }
     }
+
+    // checkCommentabilty () {
+    //   const podcast = this.$store?.state?.podcast ? this.$store.state.podcast : false
+    //   const player = this.$store?.state?.player ? this.$store.state.player : false
+
+    //   this.commentable = podcast && player && podcast.id === player._podcast_id
+    // }
 
     // debug () {
     //   console.log(

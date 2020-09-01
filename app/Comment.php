@@ -11,7 +11,8 @@ class Comment extends Model
      *
      * @var array
      */
-    protected $visible = ['id', 'anonym', 'text', 'seconds', 'created_at', 'user'];
+    protected $visible = ['id', 'public_name', 'proved', 'text', 'seconds', 'created_at', 'user'];
+    protected $fillable = ['public_name', 'text', 'seconds', 'user_id'];
     protected $appends = ['user'];
 
     /**
@@ -19,14 +20,17 @@ class Comment extends Model
      */
     public function user()
     {
-        return $this->belongsTo(User::class); //->pluck('src', 'type');
+        return $this->belongsTo(User::class);
     }
 
     public function getUserAttribute()
     {
-        if ($this->anonym) {
-            return null;
+        $user = $this->user()->get()->first();
+
+        if ($this->public_name) {
+            return $user;
         }
-        return $this->user()->get()->first();
+        return $user->makeHidden(['id', 'name', 'photo_url']);
     }
+
 }

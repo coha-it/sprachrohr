@@ -2,11 +2,34 @@ import Vue from 'vue'
 import store from '~/store'
 import VueI18n from 'vue-i18n'
 
+const dateTimeFormats = {
+  'de': {
+    date_long: {
+      weekday: 'long', day: 'numeric', month: 'numeric', year: 'numeric'
+    },
+    time: {
+      hour: 'numeric', minute: 'numeric', hours24: true
+    }
+  },
+  'en': {
+    date_short: {
+      year: 'numeric', month: 'short', day: 'numeric'
+    },
+    date_long: {
+      weekday: 'short', year: 'numeric', month: 'short', day: 'numeric'
+    },
+    time: {
+      hour: 'numeric', minute: 'numeric', hours24: true
+    }
+  }
+}
+
 Vue.use(VueI18n)
 
 const i18n = new VueI18n({
   locale: 'en',
-  messages: {}
+  messages: {},
+  dateTimeFormats
 })
 
 /**

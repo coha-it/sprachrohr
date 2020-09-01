@@ -20,10 +20,13 @@ class CreateCommentsTable extends Migration
             $table->bigInteger('podcast_id')->unsigned();
             // $table->bigInteger('comment_id')->unsigned()->nullable();
 
-            // Text-Content
-            $table->boolean('anonym')->default(0);
-            $table->text('text')->nullable(false);
+            // Trigger
+            $table->boolean('proved')->default(0);
+
+            // Content
+            $table->boolean('public_name')->default(1);
             $table->integer('seconds')->nullable(true);
+            $table->text('text')->nullable(false);
 
             // Timestamps
             $table->softDeletes();

@@ -1,16 +1,27 @@
 <template lang="pug">
 // audio element
 div(style="width: 100%")
-
   // DEBUG
-  .in-comments-wrapper(v-if="$store.state.podcast")
-    .in-comments-inner
-      .in-comment(
-        v-for="comment in comments"
-        :style="'left: ' + (comment.seconds / duration * 100).toFixed(2) + '%'"
-      )
-        .text.outer
-          .text.inner {{ comment.text }}
+  .cstm-plyr-wrp
+    .inner
+      template(v-if="$store.state.podcast")
+        .title {{ $store.state.podcast.title }}
+        .cmts(v-if="duration")
+          .cmt(
+            v-for="comment in comments"
+            :key="comment.id"
+            v-if="comment.seconds"
+            :style="'left: ' + (comment.seconds / duration * 100).toFixed(2) + '%'"
+          )
+            .pointer.outer
+              .pointer.inner
+                p.txt {{ comment.text }}
+                p.author
+                  | -&nbsp;
+                  template(v-if="comment.user.name")
+                    | {{ comment.user.name }}
+                  template(v-else)
+                    | {{ $t('anonymous') }}
 
   vue-plyr.podcast_player_wrapper(
     ref='plyr'
@@ -80,6 +91,13 @@ export default {
     // ON ready
     this.player.on('ready', event => {
       this.loadTime()
+
+      // if (
+      //   this.$store?.state?.player &&
+      //   this.podcast?.id
+      // ) {
+      //   this.$store.state.player._podcast_id = this.podcast.id
+      // }
 
       setTimeout(() => {
         this.setDuration()

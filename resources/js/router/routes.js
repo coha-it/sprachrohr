@@ -5,31 +5,10 @@ function page (path) {
 export default [
 
   // Frontend
-  {
-    path: '/',
-    name: 'start',
-    component: page('frontend/start.vue')
-  },
-
-  {
-    path: '/demo',
-    name: 'demo',
-    component: page('frontend/demo.vue')
-  },
-
-
-  {
-    path: '/podcasts',
-    name: 'podcasts',
-    component: page('frontend/podcasts.vue')
-  },
-
-  {
-    path: '/podcast/:id',
-    name: 'podcast',
-    component: page('frontend/podcast.vue')
-  },
-
+  {path: '/', name: 'start', component: page('frontend/start.vue') },
+  {path: '/demo', name: 'demo', component: page('frontend/demo.vue') },
+  {path: '/podcasts', name: 'podcasts', component: page('frontend/podcasts.vue') },
+  {path: '/podcast/:id', name: 'podcast', component: page('frontend/podcast.vue') },
   // { path: '/', name: 'welcome', component: page('welcome.vue') },
 
   { path: '/login', name: 'login', component: page('auth/login.vue') },

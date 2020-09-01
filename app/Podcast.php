@@ -10,8 +10,7 @@ class Podcast extends Model
     use SoftDeletes;
 
     protected $dates = ['deleted_at'];
-
-    // protected $appends = ['type'];
+    protected $appends = ['comment_count'];
 
     protected $hidden = [
         'created_at',
@@ -33,6 +32,14 @@ class Podcast extends Model
     public function comments()
     {
         return $this->hasMany(Comment::class);
+    }
+
+    /**
+     * Get proved comments
+     */
+    public function provedComments()
+    {
+        return $this->comments()->where('proved', true);
     }
 
     /**
@@ -59,7 +66,11 @@ class Podcast extends Model
         return $this->belongsToMany(Tag::class);
     }
 
-    public function getTypeAttribute() {
-        return 'audio';
+
+    /**
+     * Get Comment-Count Attribute
+     */
+    public function getCommentCountAttribute() {
+        return $this->provedComments()->count();
     }
 }

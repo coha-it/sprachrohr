@@ -27,8 +27,21 @@ class User extends Authenticatable implements JWTSubject, MustVerifyEmail
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
+    // protected $hidden = ['password', 'remember_token'];
+
+    /**
+     * The attributes that should be visible for arrays.
+     *
+     * @var array
+     */
+    protected $visible = [
+        'id',
+        // 'email',
+        // 'email_verified_at',
+        'name',
+        'photo_url',
+        // 'created_at',
+        // 'updated_at'
     ];
 
     /**
