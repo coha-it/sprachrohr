@@ -4,13 +4,15 @@ div
   template(v-if="podcast.comments.length")
     h3 {{ $t('comments') }}
     p Verfasse auch einen Kommentar:&nbsp;
-      a(href="#add-comment") Hier klicken
+      a(v-if="user" href="#add-comment") Hier klicken
+      router-link(v-else :to="{name: 'login'}") Anmelden
     sui-comment-group(threaded)
       // Comment
       Comment(
         v-if="i <= comments.max || comments.show_all"
         v-for="(comment, i) in podcast.comments"
         :key="comment.id"
+        :podcast="podcast"
         :comment="comment"
       )
       br
@@ -33,6 +35,7 @@ div
 
 <script>
 import Comment from '~/components/Frontend/Comment'
+import { mapGetters } from 'vuex'
 // import axios from 'axios'
 
 export default {
@@ -56,6 +59,10 @@ export default {
         show_all: false
       }
     }
-  }
+  },
+
+  computed: mapGetters({
+    user: 'auth/user'
+  })
 }
 </script>

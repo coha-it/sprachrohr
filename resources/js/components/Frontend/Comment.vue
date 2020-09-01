@@ -17,15 +17,24 @@ export default {
     comment: {
       type: Object,
       required: true
+    },
+    podcast: {
+      type: Object,
+      required: true
     }
   },
 
   methods: {
     jumpToSeconds (comment) {
       if (
-        this.$store.state?.player?.media &&
-        comment?.seconds
+        comment?.seconds &&
+        this.$store.state?.player?.media
       ) {
+        // If Podcast isn't the same
+        if (this.$store.state.player._podcast_id !== this.podcast.id) {
+          this.$set(this.$store.state, 'podcast', this.podcast)
+        }
+
         this.$store.state.player.media.currentTime = comment.seconds
       }
     },

@@ -70,7 +70,7 @@ export default {
   data () {
     return {
       loading: null,
-      commentable: false
+      commentable: true
     }
   },
 

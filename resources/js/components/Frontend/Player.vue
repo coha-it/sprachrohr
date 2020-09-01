@@ -8,10 +8,10 @@ div(style="width: 100%")
         .title {{ $store.state.podcast.title }}
         .cmts(v-if="duration")
           .cmt(
+            v-if="comment.seconds && getPercentage(comment) < 100"
             v-for="comment in comments"
             :key="comment.id"
-            v-if="comment.seconds"
-            :style="'left: ' + (comment.seconds / duration * 100).toFixed(2) + '%'"
+            :style="'left: ' + getPercentage(comment) + '%'"
           )
             .pointer.outer
               .pointer.inner
@@ -92,12 +92,12 @@ export default {
     this.player.on('ready', event => {
       this.loadTime()
 
-      // if (
-      //   this.$store?.state?.player &&
-      //   this.podcast?.id
-      // ) {
-      //   this.$store.state.player._podcast_id = this.podcast.id
-      // }
+      if (
+        this.$store?.state?.player &&
+        this.podcast?.id
+      ) {
+        this.$store.state.player._podcast_id = this.podcast.id
+      }
 
       setTimeout(() => {
         this.setDuration()
@@ -122,6 +122,10 @@ export default {
   },
 
   methods: {
+
+    getPercentage (comment) {
+      return (comment.seconds / this.duration * 100).toFixed(2)
+    },
 
     setDuration () {
       this.duration = this.player.duration
