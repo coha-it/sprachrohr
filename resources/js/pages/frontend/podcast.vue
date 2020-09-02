@@ -47,12 +47,13 @@
       | {{ tag.name }}
     br
     // Author
-    h3 {{ $t('author') }}
-    .ui.header.small(style="margin:0")
-      i.user.circle.icon
-      .content
-        | {{ podcast.author.name }}
-        .sub.header {{ podcast.author.title }}
+    template(v-if="podcast.author")
+      h3 {{ $t('author') }}
+      .ui.header.small(style="margin:0")
+        i.user.circle.icon
+        .content
+          | {{ podcast.author.name }}
+          .sub.header {{ podcast.author.title }}
     // Comments
     br
     Comments(:podcast="podcast")

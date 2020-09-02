@@ -113,7 +113,14 @@ export default {
       let seconds = this.getSeconds()
 
       // If With Seconds set and current Seconds exist
-      if (form.with_seconds && seconds) {
+      if (
+        form.with_seconds &&
+        seconds &&
+        // eslint-disable-next-line camelcase
+        this.$store?.state?.player?._podcast_id &&
+        this.podcast?.id &&
+        this.$store.state.player._podcast_id === this.podcast.id
+      ) {
         form.seconds = seconds
       } else {
         form.seconds = null
