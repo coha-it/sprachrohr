@@ -1,58 +1,64 @@
 <template lang="pug">
-.ui.basic.segment(v-if="podcast")
-
-  .ui.breadcrumb
+.ui.basic.segment
+  .ui.breadcrumb(v-if="podcast")
     router-link(:to="{name: 'podcasts'}").section Podcasts
     i.right.angle.icon.divider
     div.active.section {{ podcast.title }}
 
-  // Title
-  h1 {{ podcast.title }}
+  // loading
+  template(v-if="loading")
+    .ui.placeholder
+      .paragraph
+        .line
+        .line
+        .line
+        .line
+        .line
+    .ui.active.inverted.dimmer
+      .ui.loader
 
-  // Playbutton
-  template(v-if="podcast.sources.length")
-    template(v-if='false && getCurrentPodcastId() === podcast.id')
-      sui-button(primary disabled active readonly)
-        | Wird abgespielt
-    template(v-else='')
-      sui-button(
-        primary
-        :class="{'loading' : loading}"
-        @click='startPlay(podcast)'
-        icon="play"
-      )
-        | Anh&ouml;ren
-    //- button(@click="debug") Debug
-  br
-  br
-
-  // Long Description
-  div(v-html="podcast.desc_long")
-
-  br
-
-  // Tags
-  h3 {{ $t('tags') }}
-  .ui.label(v-for="tag in podcast.tags")
-    i.icon(v-if="tag.icon" class="tag.icon")
-    | {{ tag.name }}
-  br
-
-  // Author
-  h3 {{ $t('author') }}
-  .ui.header.small(style="margin:0")
-    i.user.circle.icon
-    .content
-      | {{ podcast.author.name }}
-      .sub.header {{ podcast.author.title }}
-
-  // Comments
-  br
-  Comments(:podcast="podcast")
-
-  // Comment-Form
-  br
-  CommentForm(v-if="commentable" :podcast="podcast")
+  // Not Loading
+  template(v-else-if="podcast")
+    // Title
+    h1 {{ podcast.title }}
+    // Playbutton
+    template(v-if="podcast.sources.length")
+      template(v-if='false && getCurrentPodcastId() === podcast.id')
+        sui-button(primary disabled active readonly)
+          | Wird abgespielt
+      template(v-else='')
+        sui-button(
+          primary
+          :class="{'loading' : loading}"
+          @click='startPlay(podcast)'
+          icon="play"
+        )
+          | Anh&ouml;ren
+      //- button(@click="debug") Debug
+    br
+    br
+    // Long Description
+    div(v-html="podcast.desc_long")
+    br
+    // Tags
+    h3 {{ $t('tags') }}
+    .ui.label(v-for="tag in podcast.tags")
+      i.icon(v-if="tag.icon" :class="tag.icon")
+      | {{ tag.name }}
+    br
+    // Author
+    h3 {{ $t('author') }}
+    .ui.header.small(style="margin:0")
+      i.user.circle.icon
+      .content
+        | {{ podcast.author.name }}
+        .sub.header {{ podcast.author.title }}
+    // Comments
+    br
+    Comments(:podcast="podcast")
+    // Comment-Form
+    br
+    CommentForm(v-if="commentable" :podcast="podcast")
 
 </template>
 <script>
@@ -69,7 +75,7 @@ export default {
 
   data () {
     return {
-      loading: null,
+      loading: false,
       commentable: true
     }
   },
@@ -88,10 +94,6 @@ export default {
     this.loading = true
     this.$store.dispatch('audio/fetchPodcast', this.$route.params.id).then(() => {
       this.loading = false
-
-      // if (typeof this.$store.state.player === 'undefined') {
-      //   this.setPodcast(this.podcast)
-      // }
     })
   },
 

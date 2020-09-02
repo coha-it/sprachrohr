@@ -18,7 +18,7 @@ class Tag extends Model
      *
      * @var array
      */
-    protected $visible = ['id', 'name'];
+    protected $visible = ['id', 'name', 'icon'];
 
     /**
      * Get the Podcast

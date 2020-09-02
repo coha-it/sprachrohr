@@ -70,6 +70,7 @@ body {min-width: auto;}
       img {
         height: 100%;
         object-fit: cover;
+        border-radius: 0;
       }
     }
   }
@@ -80,6 +81,10 @@ body {min-width: auto;}
   position: absolute;
   padding-left: 45px;
   padding-right: 205px;
+
+  @media screen and (max-width: 770px) {
+
+  }
 
   &,
   & > .inner {

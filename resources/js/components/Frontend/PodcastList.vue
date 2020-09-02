@@ -20,8 +20,8 @@
       .description
         p
       .extra
-        .ui.label(v-for="tag in podcast.tags")
-          i.icon(v-if="tag.icon" class="tag.icon")
+        .ui.label.tiny(v-for="tag in podcast.tags")
+          i.icon(v-if="tag.icon" :class="tag.icon")
           | {{ tag.name }}
 </template>
 <script>
