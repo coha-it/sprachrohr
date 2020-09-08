@@ -1,24 +1,26 @@
 <template lang="pug">
 .ui.cards
-  .card(v-for='(podcast, i) in podcasts' :key='i')
+  .card(
+    v-for='(podcast, podcast_key) in podcasts'
+    :key='podcast_key'
+  )
     .image
-      img(:src='podcast.image')
+      img(:src='podcast.img_url')
     .content(style='padding: 1rem;')
-      router-link.header(:to="podcastRoute(podcast)")
-        | {{ podcast.title }}
+      router-link.header(:to="podcastRoute(podcast)") {{ podcast.title }}
+      .description(v-if="podcast.desc_short")
+        p {{ podcast.desc_short }}
       .meta
-        p.desc.short
-          | {{ podcast.desc_short }}
-        // Visit Podcast button
         sui-button(primary @click="$router.push(podcastRoute(podcast))") Zum Podcast
-        // Play Instant Button
         template(v-if="podcast.sources.length")
           sui-button(:disabled="getCurrentPodcastId() === podcast.id" icon @click='clickedPlay(podcast)')
             sui-icon(name='play')
-      .description
-        p
-      .extra
-        .ui.label.tiny(v-for="tag in podcast.tags")
+
+      .extra(v-if="tags")
+        .ui.label.tiny(
+          v-for="(tag, tag_key) in tags"
+          :key="tag_key"
+        )
           i.icon(v-if="tag.icon" :class="tag.icon")
           | {{ tag.name }}
 </template>
@@ -32,7 +34,10 @@ export default {
       podcasts: 'audio/podcasts'
     }),
     podcast () {
-      return this.$store && this.$store.state ? this.$store.state.podcast : null
+      return this.$store?.state?.podcast ?? null
+    },
+    tags () {
+      return this.podcast?.tags ?? null
     }
   },
 

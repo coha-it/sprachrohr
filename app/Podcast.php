@@ -19,11 +19,11 @@ class Podcast extends Model
     ];
 
     /**
-     * Get the Author
+     * Get the Authors
      */
-    public function author()
+    public function authors()
     {
-        return $this->belongsTo(Author::class);
+        return $this->belongsToMany(Author::class);
     }
 
     /**

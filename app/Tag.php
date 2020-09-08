@@ -23,7 +23,7 @@ class Tag extends Model
     /**
      * Get the Podcast
      */
-    public function podcast()
+    public function podcasts()
     {
         return $this->belongsToMany(Podcast::class);
     }

@@ -42,18 +42,20 @@
     br
     // Tags
     h3 {{ $t('tags') }}
-    .ui.label(v-for="tag in podcast.tags")
+    .ui.label(v-if="podcast.tags" v-for="tag in podcast.tags")
       i.icon(v-if="tag.icon" :class="tag.icon")
       | {{ tag.name }}
     br
     // Author
-    template(v-if="podcast.author")
+    template(v-if="podcast.authors")
       h3 {{ $t('author') }}
-      .ui.header.small(style="margin:0")
-        i.user.circle.icon
-        .content
-          | {{ podcast.author.name }}
-          .sub.header {{ podcast.author.title }}
+      div(v-for="author in podcast.authors")
+        .ui.header.small(style="margin:0")
+          i.user.circle.icon
+          .content
+            | {{ author.name }}
+            .sub.header {{ author.title }}
+
     // Comments
     br
     Comments(:podcast="podcast")
@@ -81,9 +83,11 @@ export default {
     }
   },
 
-  computed: mapGetters({
-    podcast: 'audio/podcast'
-  }),
+  computed: {
+    ...mapGetters({
+      podcast: 'audio/podcast'
+    })
+  },
 
   mounted () {},
 

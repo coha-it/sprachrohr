@@ -3,7 +3,6 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Author extends Model
 {
@@ -17,7 +16,7 @@ class Author extends Model
      */
     public function podcasts()
     {
-        return $this->hasMany(Podcast::class);
+        return $this->belongsToMany(Podcast::class);
     }
 
 }

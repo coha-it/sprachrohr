@@ -8,7 +8,7 @@ use App\Podcast;
 class PodcastCtrl extends Controller
 {
     public function getPodcasts() {
-        return Podcast::with(['sources', 'tags', 'author'])
+        return Podcast::with(['sources', 'tags', 'authors'])
                         ->get()
                         ->makeHidden([
                             'desc_long'
@@ -17,7 +17,7 @@ class PodcastCtrl extends Controller
     }
 
     public function getPodcast(Request $request, $id) {
-        return Podcast::with(['sources', 'tags', 'author'])
+        return Podcast::with(['sources', 'tags', 'authors'])
                 ->with(['comments' => function($c) {
                     $c->where('proved', true);
                     $c->orderBy('created_at', 'asc');
