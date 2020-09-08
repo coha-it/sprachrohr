@@ -13,10 +13,8 @@
         sui-button(primary @click="$router.push(podcastRoute(podcast))") Zum Podcast
         // Play Instant Button
         template(v-if="podcast.sources.length")
-          template(v-if='getCurrentPodcastId() === podcast.id')
-            sui-button(disabled active readonly) Wird abgespielt
-          template(v-else)
-            sui-button(@click='clickedPlay(podcast)') Anh&ouml;ren
+          sui-button(:disabled="getCurrentPodcastId() === podcast.id" icon @click='clickedPlay(podcast)')
+            sui-icon(name='play')
       .description
         p
       .extra

@@ -12,13 +12,22 @@
     @dismiss="comment.success = false"
   )
 
+  // If no User
+  sui-button(
+    v-if="!user"
+    size="tiny"
+    content="Anmelden um zu kommentieren"
+    @click="$router.push({name: 'login'})"
+  )
+
+  // Else-if
   // Show Comment-Form
   sui-button(
-    v-if="!comment.show_form"
+    v-else-if="!comment.show_form"
     size="tiny"
     content="Kommentar hinzufügen"
     primary
-    @click="user ? comment.show_form = true : $router.push({name: 'login'})"
+    @click="comment.show_form = true"
   )
 
   // Comment-Form

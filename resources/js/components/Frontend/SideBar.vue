@@ -9,21 +9,20 @@ div
     vertical=''
     style="display: flex;padding-bottom: 50px;"
   )
-    sui-menu-item(:link="true" @click="goTo({name: 'start'})")
-      sui-icon(name='home')
-      | Home
-    template(v-if="user")
-      sui-menu-item(:link="true" @click="bLogout = !bLogout")
-        sui-icon(name='sign-out')
-        | Logout
-    template(v-else)
-      sui-menu-item(:link="true" @click="goTo({name: 'login'})")
-        sui-icon(name='sign-in')
-        | Login
-      sui-menu-item(:link="true" @click="goTo({name: 'register'})")
-        sui-icon(name='sign-in')
-        | Register
+    // Navigation
+    sui-menu-item(
+      v-if="nav.all || user && nav.user || !user && nav.guest"
+      v-for="nav in navs"
+      :link="true"
+      @click="nav.click"
+    )
+      sui-icon(:name='nav.icon')
+      | {{ $t(nav.text) }}
+
+    // Spacer
     div(style="flex:1")
+
+    // Locales
     sui-menu-item
       LocaleDropdown
 
@@ -58,7 +57,33 @@ export default {
 
   data () {
     return {
-      bLogout: false
+      bLogout: false,
+      navs: [
+        {
+          text: 'Home',
+          icon: 'home',
+          all: true,
+          click: () => { this.goTo({ name: 'start' }) }
+        },
+        {
+          text: 'Logout',
+          icon: 'sign-out',
+          user: true,
+          click: () => { this.bLogout = !this.bLogout }
+        },
+        {
+          text: 'Login',
+          icon: 'sign-in',
+          guest: true,
+          click: () => { this.goTo({ name: 'login' }) }
+        },
+        {
+          text: 'Register',
+          icon: 'sign-in',
+          guest: true,
+          click: () => { this.goTo({ name: 'register' }) }
+        }
+      ]
     }
   },
 
