@@ -14,7 +14,7 @@ class CreateSourcesTable extends Migration
     public function up()
     {
         Schema::create('sources', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->id();
             $table->bigInteger('podcast_id')->unsigned();
 
             $table->string('src', 2083);

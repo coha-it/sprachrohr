@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTagsTable extends Migration
+class CreateAuthorPodcastTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,10 @@ class CreateTagsTable extends Migration
      */
     public function up()
     {
-        Schema::create('tags', function (Blueprint $table) {
+        Schema::create('author_podcast', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('icon')->nullable();
+            $table->integer('author_id')->unsigned();
+            $table->integer('podcast_id')->unsigned();
         });
     }
 
@@ -27,6 +27,6 @@ class CreateTagsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tags');
+        Schema::dropIfExists('author_podcast');
     }
 }
