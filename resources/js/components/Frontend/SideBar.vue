@@ -12,7 +12,8 @@ div
     // Navigation
     sui-menu-item(
       v-if="nav.all || user && nav.user || !user && nav.guest"
-      v-for="nav in navs"
+      v-for="(nav, i) in navs"
+      :key="i"
       :link="true"
       @click="nav.click"
     )
