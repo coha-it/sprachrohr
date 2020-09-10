@@ -40,7 +40,7 @@ Route::group(['middleware' => 'guest:api'], function () {
 
 Route::group(['middleware' => 'api'], function () {
     // Podcasts
-    Route::get('podcasts', 'PodcastCtrl@getPodcasts');
+    Route::post('podcasts', 'PodcastCtrl@getPodcasts');
     Route::get('podcast/{id}', 'PodcastCtrl@getPodcast');
 
     // Comments

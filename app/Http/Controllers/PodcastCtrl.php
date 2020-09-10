@@ -7,13 +7,11 @@ use App\Podcast;
 
 class PodcastCtrl extends Controller
 {
-    public function getPodcasts() {
-        return Podcast::with(['sources', 'tags', 'authors'])
-                        ->get()
-                        ->makeHidden([
-                            'desc_long'
-                        ])
-                        ->toJson();
+    public function getPodcasts(Request $req) {
+        $p = Podcast::with(['sources', 'tags', 'authors']);
+        $p = $p->paginate($req->per_page);
+
+        return $p;
     }
 
     public function getPodcast(Request $request, $id) {
