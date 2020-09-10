@@ -27,15 +27,16 @@ export const mutations = {
 export const actions = {
   async fetchPodcast ({ commit }, id) {
     try {
+      console.log('jorur')
       const { data } = await axios.get('/api/podcast/' + id)
       commit(types.FETCH_PODCAST_SUCCESS, { podcast: data })
     } catch (e) {
       commit(types.FETCH_PODCAST_FAILURE)
     }
   },
-  async fetchPodcasts ({ commit }) {
+  async fetchPodcasts ({ commit }, params) {
     try {
-      const { data } = await axios.get('/api/podcasts')
+      const { data } = await axios.post('/api/podcasts', params)
       commit(types.FETCH_PODCASTS_SUCCESS, { podcasts: data })
     } catch (e) {
       commit(types.FETCH_PODCASTS_FAILURE)

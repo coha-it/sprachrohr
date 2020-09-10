@@ -10,7 +10,10 @@
 }
 
 body {min-width: auto;}
-.ui.full.height {min-height: 100vh;}
+.ui.full.height {
+  // min-height: 100vh;
+  min-height: 100%;
+}
 .pushable > .pusher { padding-bottom: 55px;}
 
 // Sidebar
@@ -24,7 +27,6 @@ body {min-width: auto;}
 }
 
 /* Desktop */
-
 @media screen and (min-width: 770px) {
     .pusher.pushed {
         padding-right: 260px;
@@ -83,7 +85,7 @@ body {min-width: auto;}
   padding-right: 205px;
 
   @media screen and (max-width: 770px) {
-
+    padding-right: 125px;
   }
 
   &,

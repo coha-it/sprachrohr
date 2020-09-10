@@ -5,8 +5,6 @@
     p
       | {{ $t('register_desc') }}
       br
-      | {{ $t('login_alternative') }}&nbsp;
-      router-link(:to="{name: 'login'}") {{ $t('login') }}
 
     // Must Verify
     div(v-if='mustVerifyEmail') {{ $t('verify_email_address') }}
@@ -67,6 +65,11 @@
 
         // GitHub Register Button
         login-with-github
+
+  br
+
+  p {{ $t('login_alternative') }}&nbsp;
+    router-link(:to="{name: 'login'}") {{ $t('login') }}
 
 </template>
 

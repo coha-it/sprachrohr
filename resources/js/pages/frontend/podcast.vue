@@ -19,6 +19,7 @@
 
   // Not Loading
   template(v-else-if="podcast")
+
     // Title
     h1 {{ podcast.title }}
     // Playbutton
@@ -37,17 +38,22 @@
       //- button(@click="debug") Debug
     br
     br
+
     // Long Description
-    div(v-html="podcast.desc_long")
-    br
+    template(v-if="podcast.desc_long")
+      div(v-html="podcast.desc_long")
+      br
+
     // Tags
-    h3 {{ $t('tags') }}
-    .ui.label(v-if="podcast.tags" v-for="tag in podcast.tags")
-      i.icon(v-if="tag.icon" :class="tag.icon")
-      | {{ tag.name }}
-    br
+    template(v-if="tags.length")
+      h3 {{ $t('tags') }}
+      .ui.label(v-if="podcast.tags" v-for="tag in podcast.tags")
+        i.icon(v-if="tag.icon" :class="tag.icon")
+        | {{ tag.name }}
+      br
+
     // Author
-    template(v-if="podcast.authors")
+    template(v-if="authors.length")
       h3 {{ $t('author') }}
       div(v-for="author in podcast.authors")
         .ui.header.small(style="margin:0")
@@ -86,7 +92,15 @@ export default {
   computed: {
     ...mapGetters({
       podcast: 'audio/podcast'
-    })
+    }),
+
+    tags () {
+      return this.podcast?.tags ?? null
+    },
+
+    authors () {
+      return this.podcast?.authors ?? null
+    }
   },
 
   mounted () {},

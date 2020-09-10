@@ -46,8 +46,12 @@
 
     // Forgot PW
     .field
-      router-link(:to="{ name: 'password.request' }")
-        | {{ $t('forgot_password') }}
+      router-link(:to="{ name: 'password.request' }") {{ $t('forgot_password') }}
+
+    // Register Alternative
+    .field
+      p {{ $t('register_alternative') }}&nbsp;
+        router-link(:to="{ name: 'register' }") {{ $t('register') }}
 </template>
 
 <script>
